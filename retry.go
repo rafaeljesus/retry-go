@@ -1,4 +1,4 @@
-package retrygo
+package retry
 
 import (
 	"math/rand"
@@ -7,7 +7,6 @@ import (
 )
 
 type function func() error
-type httpfunction func() (*http.Response, error)
 
 // Do runs the passed function until the number of retries is reached.
 func Do(fn function, retries int, sleep time.Duration) error {
@@ -17,6 +16,7 @@ func Do(fn function, retries int, sleep time.Duration) error {
 			return err
 		}
 
+		// preventing thundering herd problem (https://en.wikipedia.org/wiki/Thundering_herd_problem)
 		sleep += (time.Duration(rand.Int63n(int64(sleep)))) / 2
 		time.Sleep(sleep)
 
@@ -25,6 +25,8 @@ func Do(fn function, retries int, sleep time.Duration) error {
 
 	return nil
 }
+
+type httpfunction func() (*http.Response, error)
 
 // DoHTTP runs the passed function until the number of retries is reached.
 // It returns *http.Response and error.

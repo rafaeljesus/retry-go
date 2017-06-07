@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	retry "github.com/hellofresh/retry-go"
+	"github.com/hellofresh/retry-go"
 )
 
 var (
@@ -19,11 +19,11 @@ func main() {
 		}
 		return nil
 	}, attempts, sleepTime); err != nil {
-		log.Print("fn failed")
+		log.Print("retry.Do Failed")
 		return
 	}
 
-	log.Print("fn ok")
+	log.Print("retry.Do OK")
 }
 
 func fn() error {

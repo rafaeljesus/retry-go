@@ -1,4 +1,4 @@
-package retrygo
+package retry
 
 import (
 	"errors"
