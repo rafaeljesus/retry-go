@@ -41,7 +41,7 @@ func main() {
 
 ## Badges
 
-[![Build Status](https://travis-ci.org/rafaeljesus/retry-go.svg?branch=master)](https://travis-ci.org/rafaeljesus/retry-go)
+[![Build Status](https://circleci.com/gh/rafaeljesus/retry-go.svg?style=svg)](https://circleci.com/gh/rafaeljesus/retry-go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/rafaeljesus/retry-go)](https://goreportcard.com/report/github.com/rafaeljesus/retry-go)
 [![Go Doc](https://godoc.org/github.com/rafaeljesus/retry-go?status.svg)](https://godoc.org/github.com/rafaeljesus/retry-go)
 
