@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/hellofresh/retry-go"
+	"github.com/rafaeljesus/retry-go"
 )
 
 var (

@@ -2,6 +2,11 @@
 
 * Retrying made simple and easy for golang.
 
+## Installation
+```bash
+go get -u github.com/rafaeljesus/retry-go
+```
+
 ### Usage
 
 ```go
@@ -10,7 +15,7 @@ package main
 import (
   "time"
 
-  retry "github.com/hellofresh/retry-go"
+  "github.com/rafaeljesus/retry-go"
 )
 
 func main() {
@@ -36,11 +41,12 @@ func main() {
 
 ## Badges
 
-[![Build Status](https://travis-ci.org/hellofresh/retry-go.svg?branch=master)](https://travis-ci.org/hellofresh/retry-go)
-[![Go Report Card](https://goreportcard.com/badge/github.com/hellofresh/retry-go)](https://goreportcard.com/report/github.com/hellofresh/retry-go)
-[![Go Doc](https://godoc.org/github.com/hellofresh/retry-go?status.svg)](https://godoc.org/github.com/hellofresh/retry-go)
+[![Build Status](https://travis-ci.org/rafaeljesus/retry-go.svg?branch=master)](https://travis-ci.org/rafaeljesus/retry-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/rafaeljesus/retry-go)](https://goreportcard.com/report/github.com/rafaeljesus/retry-go)
+[![Go Doc](https://godoc.org/github.com/rafaeljesus/retry-go?status.svg)](https://godoc.org/github.com/rafaeljesus/retry-go)
 
 ---
 
-> GitHub [@hellofresh](https://github.com/hellofresh) &nbsp;&middot;&nbsp;
-> Medium [@engineering.hellofresh](https://engineering.hellofresh.com)
+> GitHub [@rafaeljesus](https://github.com/rafaeljesus) &nbsp;&middot;&nbsp;
+> Medium [@_jesus_rafael](https://medium.com/@_jesus_rafael) &nbsp;&middot;&nbsp;
+> Twitter [@_jesus_rafael](https://twitter.com/_jesus_rafael)

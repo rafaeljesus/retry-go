@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/hellofresh/retry-go"
+	"github.com/rafaeljesus/retry-go"
 )
 
 var (
