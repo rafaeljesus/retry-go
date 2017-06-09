@@ -6,13 +6,21 @@ import (
 	"time"
 )
 
+var (
+	defaultSleep = 500 * time.Millisecond
+)
+
 type function func() error
 
 // Do runs the passed function until the number of retries is reached.
 func Do(fn function, retries int, sleep time.Duration) error {
+	if sleep == 0 {
+		sleep = defaultSleep
+	}
+
 	if err := fn(); err != nil {
 		retries--
-		if retries == 0 {
+		if retries <= 0 {
 			return err
 		}
 

@@ -16,7 +16,6 @@ import (
 func main() {
   attempts := 3
   sleepTime := time.Second*2
-
   if err := retry.Do(func() error {
     if err := work(); err != nil {
       return err
