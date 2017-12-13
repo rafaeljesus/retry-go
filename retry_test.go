@@ -8,10 +8,42 @@ import (
 )
 
 var (
-	failErr = errors.New("fail")
+	errFail = errors.New("fail")
 )
 
-func TestDoRetry(t *testing.T) {
+func TestRetry(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		scenario string
+		function func(*testing.T)
+	}{
+		{
+			scenario: "do retry",
+			function: testDoRetry,
+		},
+		{
+			scenario: "do retry with fail",
+			function: testDoRetryWithFail,
+		},
+		{
+			scenario: "do http retry",
+			function: testDoHTTPRetry,
+		},
+		{
+			scenario: "do http retry with fail",
+			function: testDoHTTPRetryWithFail,
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.scenario, func(t *testing.T) {
+			test.function(t)
+		})
+	}
+}
+
+func testDoRetry(t *testing.T) {
 	attemptsCount := 0
 	fn := func() error {
 		attemptsCount++
@@ -28,17 +60,17 @@ func TestDoRetry(t *testing.T) {
 	}
 }
 
-func TestDoRetryWithFail(t *testing.T) {
-	failErr := errors.New("fail")
+func testDoRetryWithFail(t *testing.T) {
+	errFail := errors.New("fail")
 	attemptsCount := 0
 	fail := func() error {
 		attemptsCount++
-		return failErr
+		return errFail
 	}
 
 	err := Do(fail, 2, time.Second)
 	if err == nil {
-		t.Errorf("retry.Do returned wrong err value: got %v want %v", err, failErr)
+		t.Errorf("retry.Do returned wrong err value: got %v want %v", err, errFail)
 	}
 
 	if attemptsCount != 2 {
@@ -46,7 +78,7 @@ func TestDoRetryWithFail(t *testing.T) {
 	}
 }
 
-func TestDoHTTPRetry(t *testing.T) {
+func testDoHTTPRetry(t *testing.T) {
 	attemptsCount := 0
 	fn := func() (*http.Response, error) {
 		attemptsCount++
@@ -63,11 +95,11 @@ func TestDoHTTPRetry(t *testing.T) {
 	}
 }
 
-func TestDoHTTPRetryWithFail(t *testing.T) {
+func testDoHTTPRetryWithFail(t *testing.T) {
 	attemptsCount := 0
 	fn := func() (*http.Response, error) {
 		attemptsCount++
-		return &http.Response{}, failErr
+		return &http.Response{}, errFail
 	}
 
 	_, err := DoHTTP(fn, 2, time.Second)
