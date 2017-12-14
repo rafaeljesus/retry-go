@@ -10,10 +10,10 @@ var (
 	defaultSleep = 500 * time.Millisecond
 )
 
-// Func is the function to be executed and eventualy retried.
+// Func is the function to be executed and eventually retried.
 type Func func() error
 
-// HTTPFunc is the function to be executed and eventualy retried.
+// HTTPFunc is the function to be executed and eventually retried.
 // The only difference from Func is that it expects an *http.Response on the first returning argument.
 type HTTPFunc func() (*http.Response, error)
 
