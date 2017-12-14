@@ -7,8 +7,9 @@
 go get -u github.com/rafaeljesus/retry-go
 ```
 
-### Usage
+## Usage
 
+### Do
 ```go
 package main
 
@@ -22,10 +23,28 @@ func main() {
   attempts := 3
   sleepTime := time.Second*2
   if err := retry.Do(func() error {
-    if err := work(); err != nil {
-      return err
-    }
-    return nil
+    return work()
+  }, attempts, sleepTime); err != nil {
+    // Retry failed
+  }
+}
+```
+
+### DoHTTP
+```go
+package main
+
+import (
+  "time"
+
+  "github.com/rafaeljesus/retry-go"
+)
+
+func main() {
+  attempts := 3
+  sleepTime := time.Second*2
+  if err := retry.DoHTTP(func() (*http.Response, error) {
+    return makeRequest()
   }, attempts, sleepTime); err != nil {
     // Retry failed
   }
